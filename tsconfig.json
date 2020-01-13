@@ -21,9 +21,12 @@
     "typeRoots" : ["./@types", "./node_modules/@types"],
     "baseUrl": ".",
     "paths": {
+      "@test-models/*": ["test_models/*"],
       "@constants/*": ["src/constants/*"],
+      "@error/*": ["src/error/*"],
       "@libs/*": ["src/libs/*"],
-      "@schemas/*": ["schemas/*"],
+      "@rules/*": ["src/rules/*"],
+      "@schemas/*": ["src/schemas/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

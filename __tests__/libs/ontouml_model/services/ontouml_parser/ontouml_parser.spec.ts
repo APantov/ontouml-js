@@ -1,4 +1,4 @@
-import { modelExample1 } from 'ontouml-example-models';
+import { modelInvalidExample1 } from '@test-models/invalids';
 import OntoUMLParser from '@libs/ontouml_model/services/ontouml_parser';
 import { CLASS_TYPE } from '@constants/model_types';
 
@@ -7,17 +7,20 @@ describe('OntoUML Parser', () => {
     it('Should return an invalid model', async () => {
       try {
         new OntoUMLParser({
-          '@type': 'Model',
-          uri: 'invalid.model',
+          type: 'Model',
+          id: 'invalid.model',
+          name: null,
+          authors: null,
+          elements: null,
         });
       } catch (error) {
-        expect(error.message).toBe('data.uri should match format "uri"');
+        expect(error.detail).toBe('data.id should match format "uri"');
       }
     });
   });
 
   describe('OntoUML Example Model 1', () => {
-    const parser = new OntoUMLParser(modelExample1);
+    const parser = new OntoUMLParser(modelInvalidExample1);
 
     it('Should return a valid model', async () => {
       expect(parser.isValid()).toBe(true);
@@ -34,9 +37,7 @@ describe('OntoUML Parser', () => {
     it('Should get 2 childs from the class "ontouml:model.p1.c1" with type "Class"', async () => {
       const classes = parser
         .getClassChildren('ontouml:model.p1.c1')
-        .filter(
-          (classEl: IStructuralElement) => classEl['@type'] === CLASS_TYPE,
-        );
+        .filter((classEl: IElement) => classEl.type === CLASS_TYPE);
       expect(classes.length).toBe(2);
     });
 

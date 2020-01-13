@@ -14,7 +14,7 @@
       "format": "uri"
     },
     "uri": {
-      "description": "Element URI (under RFC 3986) used to represent resources' unique identies and non-containment references between entities.",
+      "description": "Element ID (under RFC 3986) used to represent resources' unique identies and non-containment references between entities.",
       "type": "string",
       "format": "uri"
     },
@@ -27,8 +27,8 @@
       }
     },
 
-    "structuralElements": {
-      "description": "This field contains entities present in OntoUML structural aspects (packages, classes, relations, generalizations and so on). Contained packages may have their on fields 'structuralElements'.",
+    "elements": {
+      "description": "This field contains entities present in OntoUML structural aspects (packages, classes, relations, generalizations and so on). Contained packages may have their on fields 'elements'.",
       "type": "array",
       "uniqueItems": true,
       "items": {
@@ -52,7 +52,7 @@
       }
     },
     "tuple": {
-      "description": "Tuples of URIs following some predicative statement. Used to represent relations' instances and/or links. The elements are ordered and the positions follow the semantics of some specified predicated (e.g., loves(a,b) = 'a loves b').",
+      "description": "Tuples of IDs following some predicative statement. Used to represent relations' instances and/or links. The elements are ordered and the positions follow the semantics of some specified predicated (e.g., loves(a,b) = 'a loves b').",
       "type": "array",
       "uniqueItems": true,
       "minItems": 2,
@@ -87,14 +87,11 @@
         "uri": {
           "$ref": "#/definitions/uri"
         },
-        "structuralElements": {
-          "$ref": "#/definitions/structuralElements"
+        "elements": {
+          "$ref": "#/definitions/elements"
         }
       },
-      "required": [
-        "@type",
-        "uri"
-      ],
+      "required": ["@type", "uri"],
       "additionalProperties": false
     },
     "Class": {
@@ -128,10 +125,7 @@
           }
         }
       },
-      "required": [
-        "@type",
-        "uri"
-      ],
+      "required": ["@type", "uri"],
       "additionalProperties": false
     },
     "Relation": {
@@ -165,11 +159,7 @@
           }
         }
       },
-      "required": [
-        "@type",
-        "uri",
-        "properties"
-      ],
+      "required": ["@type", "uri", "properties"],
       "additionalProperties": false
     },
     "GeneralizationLink": {
@@ -197,11 +187,7 @@
           "maxItems": 2
         }
       },
-      "required": [
-        "@type",
-        "uri",
-        "tuple"
-      ],
+      "required": ["@type", "uri", "tuple"],
       "additionalProperties": false
     },
     "GeneralizationSet": {
@@ -238,11 +224,7 @@
           ]
         }
       },
-      "required": [
-        "@type",
-        "uri",
-        "tuple"
-      ],
+      "required": ["@type", "uri", "tuple"],
       "additionalProperties": false
     },
     "Property": {
@@ -289,14 +271,11 @@
           }
         }
       },
-      "required": [
-        "@type",
-        "uri"
-      ],
+      "required": ["@type", "uri"],
       "additionalProperties": false
     },
     "Stereotype": {
-      "description": "The field stereotype allows the flexible annotation of model elements with meta-properties. BEAWARE that the current strategy for dealing with stereotypes in the OntoUML Schema may change soon as we try to incorporate tagged values and avoid unnecessary duplication of stereotypes (potentially relying on URIs for the latter).",
+      "description": "The field stereotype allows the flexible annotation of model elements with meta-properties. BEAWARE that the current strategy for dealing with stereotypes in the OntoUML Schema may change soon as we try to incorporate tagged values and avoid unnecessary duplication of stereotypes (potentially relying on IDs for the latter).",
       "oneOf": [
         {
           "type": "string",
@@ -318,10 +297,7 @@
               "$ref": "#/definitions/url"
             }
           },
-          "required": [
-            "@type",
-            "uri"
-          ],
+          "required": ["@type", "uri"],
           "additionalProperties": false
         }
       ]
@@ -346,13 +322,10 @@
     "authors": {
       "$ref": "#/definitions/authors"
     },
-    "structuralElements": {
-      "$ref": "#/definitions/structuralElements"
+    "elements": {
+      "$ref": "#/definitions/elements"
     }
   },
-  "required": [
-    "@type",
-    "uri"
-  ],
+  "required": ["@type", "uri"],
   "additionalProperties": false
 }
